@@ -1,0 +1,54 @@
+CS111 - Project 0: Warm-Up	Name:Uday Shankar Alla	ID:404428077
+
+The following README file contains information about each of the following
+submissions:
+1)lab0.c
+2)makefile
+3)Screenshots a)showing backtrace and b) showing breakpoint and variable inspection
+
+==========================================================
+lab0.c
+==========================================================
+Program that copies its standard input to its standard output by read(2)ing from file descriptor
+0 (until encountering an end of file) and write(2)-ing to file descriptor 1. If no errors
+(other than EOF) are encountered, program exit(2)s with a return code of 0.
+
+The program accepts all input through command line and uses getopt long to parse the arguments.
+The program follows the spec in every aspect however ther is 1 small limitation of the program.
+
+Limitation:Since the program read an writes using buffers, if the size of the file is
+exceedingly large it can result in segmentation faults.
+
+=========================================================
+makefile
+=========================================================
+Makefile that supports the following targets:
+ (default) ... simply builds the lab0 executable.
+  check ... runs a quick smoke-test on whether or not the program seems to work,
+  supports the required arguments, and reports success or failure.
+  make check checks for the following errors as a simple smokescreen test:
+       1)checks the case when no file input or output is given and input is directly
+       taken from stdin and output is outputted to screen(stdout)
+       2)Checks the case when no file input is provided but output file is passed as argument.
+       Therefore input is taken directly from stdin and outputted to the file passed as argument
+       3)checks the case when only input file is passed as argument.
+       The output is therefore directly outputted to screen from the input file.
+       4)checks the case when inputfile and output file is passed as arguments.
+       did a simple diff test to see if the inputfile and outputfile were identical.
+       5)Checks the case when an invalid inputfile is passed(the file didnt exist)
+       6)checks the case when segfault is invoked as part of argument.
+       7)checks the case when segfault and catch are passed as arguments
+  clean ... delete all makefile-created files to return the directory to its just installed
+  state. IT basically deletes all of the text files created as part of make check,
+  the executable files created for compilation purposes, it also deletes .o and .out files
+  created for debugging and execution purposes. It returns to the original state.
+ 
+  dist ... builds the distribution tarball.
+============================================================
+Screenshots
+============================================================
+a)The first screenshot shows the segmentation fault and a backtrace done right after.
+  It was pretty simple to achieve this. All the gdb commands I had to us were run and backtrace.
+b)The Second screenshot shows the setting of a break point at the variable that causes the segmentation fault.
+  Through the screenshot we can also see the inspection of the vaue of the variable which as expected
+  is null.
